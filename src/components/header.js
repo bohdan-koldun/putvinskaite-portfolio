@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link } from "gatsby"
-import BackgroundImage from '../images/b1.jpg'; // Import the background image
+import BackgroundImage from '../images/b2.jpg'; // Import the background image
 
 const Header = () => {
   const heroStyle = {
@@ -70,7 +70,7 @@ const Header = () => {
           onMouseEnter={(e) => handleNavLinkHover(e, true)}
           onMouseLeave={(e) => handleNavLinkHover(e, false)}
         >
-          Home
+          Головна
         </Link>
         <Link 
           to="/#portfolio" 
@@ -78,7 +78,7 @@ const Header = () => {
           onMouseEnter={(e) => handleNavLinkHover(e, true)}
           onMouseLeave={(e) => handleNavLinkHover(e, false)}
         >
-          Portfolio
+          Портфоліо
         </Link>
         <Link 
           to="/#contact" 
@@ -86,7 +86,7 @@ const Header = () => {
           onMouseEnter={(e) => handleNavLinkHover(e, true)}
           onMouseLeave={(e) => handleNavLinkHover(e, false)}
         >
-          Contact
+          Контакти
         </Link>
       </nav>
     </header>
