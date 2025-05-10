@@ -19,6 +19,7 @@
     "yet-another-react-lightbox": "^3.23.0"
   },
   "devDependencies": {
+    "gatsby-adapter-netlify": "^1.0.4",
     "prettier": "^2.8.8"
   },
   "keywords": [
