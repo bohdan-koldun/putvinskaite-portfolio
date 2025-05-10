@@ -7,27 +7,37 @@ const PriceBlock = () => {
 
   const services = [
     {
-      name: "Портретна фотосесія",
-      price: "$250",
-      description: "1-годинна сесія, 20 оброблених фото.",
+      name: "Індивідуальна фотосесія",
+      price: "від 2500₴",
+      description: "Підкресліть вашу унікальність та стиль. Зйомка 1-1.5 години, 15-20 фото в ретуші.",
+    },
+    {
+      name: "Сімейна фотосесія",
+      price: "від 3500₴",
+      description: "Збережіть теплі моменти з рідними. До 1.5 годин зйомки, 20+ фото.",
+    },
+    {
+      name: "Весільна фотозйомка",
+      price: "від 15 000₴",
+      description: "Найважливіший день у найкращих фотографіях. Повний день зйомки, до 400 фото.",
+    },
+    {
+      name: "Love story",
+      price: "від 4000₴",
+      description: "Романтична історія вашого кохання в кадрах. 2 години зйомки, локація за вибором.",
     },
     {
       name: "Репортажна фотозйомка",
-      price: "$150/год", // More explicit pricing
-      description: "Мін. 2 години. Динамічна зйомка подій.",
+      price: "800₴/год",
+      description: "Мін. 2 години. Динамічна зйомка подій, 50+ фото/година.",
     },
     {
       name: "Предметна фотозйомка",
-      price: "$50/продукт",
-      description: "Чіткі студійні знімки, різні ракурси.",
+      price: "від 300₴/продукт",
+      description: "Чіткі студійні знімки, 3–5 ракурсів, базова обробка.",
     },
-    // You can add more services here to see the wrapping effect
-    // {
-    //   name: "Wedding Package",
-    //   price: "$1200",
-    //   description: "Full day coverage, digital album.",
-    // },
-  ]
+  ];
+  
 
   const handleOrderClick = (serviceName) => {
     setCurrentService(serviceName);

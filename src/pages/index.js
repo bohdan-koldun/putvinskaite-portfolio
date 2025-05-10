@@ -5,6 +5,8 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import PriceBlock from "../components/PriceBlock" // Assuming we'll create this
+import Testimonials from "../components/Testimonials"
+import BeforeAfterGallery from "../components/BeforeAfterGallery"
 
 // We can remove or replace styles from index.module.css later
 // import * as styles from "../components/index.module.css"
@@ -31,10 +33,18 @@ const IndexPage = ({ data }) => {
         </div>
       </section>
 
+      {/* Before and After Section START */}
+      <BeforeAfterGallery />
+      {/* Before and After Section END */}
+
       <section id="prices" style={{ marginBottom: '3rem', padding: '2rem 0' }}>
         <h2 style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '2em', fontWeight: '300' }}>Послуги та Ціни</h2>
         <PriceBlock />
       </section>
+
+      {/* Testimonials Section START */}
+      <Testimonials />
+      {/* Testimonials Section END */}
 
       {/* New Contact Section START */}
       <section id="contact" style={{ marginBottom: '3rem', padding: '2rem 0' }}>
