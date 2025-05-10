@@ -91,23 +91,6 @@ const IndexPage = ({ data }) => {
     lineHeight: '1.6',
   };
 
-  const ctaButtonStyle = {
-    padding: '15px 35px',
-    fontSize: '1.2em',
-    color: 'var(--color-primary, #007bff)',
-    backgroundColor: '#fff',
-    border: 'none',
-    borderRadius: 'var(--border-radius, 4px)',
-    textDecoration: 'none',
-    fontWeight: 'bold',
-    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-    boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
-    '@media (max-width: 768px)': {
-      padding: '12px 28px',
-      fontSize: '1em',
-    },
-  };
-
   return (
     <Layout>
       <AboutMe />
@@ -136,8 +119,6 @@ const IndexPage = ({ data }) => {
           <button 
             onClick={handleShowMore} 
             style={showMoreButtonStyle}
-            onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'var(--color-primary-dark, #0056b3)'} 
-            onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'var(--color-primary, #007bff)'}
           >
             Показати більше
           </button>
@@ -208,9 +189,7 @@ const IndexPage = ({ data }) => {
         </p>
         <a 
           href="#contact" 
-          style={ctaButtonStyle}
-          onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-          onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0px)'}
+          className="cta-button"
         >
           Обговорити Фотосесію
         </a>

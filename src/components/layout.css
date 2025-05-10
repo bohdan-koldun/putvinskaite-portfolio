@@ -222,3 +222,42 @@ pre tt:before,
 pre tt:after {
   content: none;
 }
+
+/* Call to Action Button Styles */
+.cta-button {
+  display: inline-block; /* Ensure it behaves like a button and respects padding */
+  padding: 15px 35px;
+  font-size: 1.2em;
+  color: var(--color-primary, #007bff);
+  background-color: #fff;
+  border: none;
+  border-radius: var(--border-radius, 4px);
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  cursor: pointer; /* Add cursor pointer for better UX */
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  /* You might want to adjust hover colors if needed, e.g.:
+  background-color: var(--color-primary-dark, #0056b3);
+  color: #fff; 
+  */
+}
+
+/* Responsive adjustments for the CTA button */
+@media (max-width: 768px) {
+  .cta-button {
+    padding: 12px 28px;
+    font-size: 1em;
+    width: auto; /* Allow button to size to content or set to 100% if full-width desired */
+    /* Example: Make it full width on small screens if desired
+    width: 90%; 
+    margin-left: auto;
+    margin-right: auto;
+    */
+  }
+}
