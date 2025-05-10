@@ -111,7 +111,7 @@ const PriceBlock = () => {
     fontWeight: "bold",
     color: "#fff", 
     textAlign: 'right',
-    whiteSpace: 'nowrap', // Prevent price from wrapping
+    wordBreak: 'break-word', // Added to allow breaking long words
   }
 
   const buttonStyle = {
