@@ -4,7 +4,8 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import PriceBlock from "../components/PriceBlock" // Assuming we'll create this
+import AboutMe from "../components/AboutMe"
+import PriceBlock from "../components/PriceBlock"
 import Testimonials from "../components/Testimonials"
 import BeforeAfterGallery from "../components/BeforeAfterGallery"
 
@@ -68,8 +69,45 @@ const IndexPage = ({ data }) => {
     transition: 'background-color 0.3s ease',
   };
 
+  // Styles for CTA section
+  const ctaSectionStyle = {
+    padding: '60px 20px',
+    backgroundColor: 'var(--color-primary, #007bff)', // Use primary color for background
+    textAlign: 'center',
+    color: '#fff',
+  };
+
+  const ctaHeadingStyle = {
+    fontSize: '2.2em',
+    fontWeight: 'bold',
+    marginBottom: '20px',
+  };
+
+  const ctaTextStyle = {
+    fontSize: '1.2em',
+    marginBottom: '30px',
+    maxWidth: '700px',
+    margin: '0 auto 30px auto',
+    lineHeight: '1.6',
+  };
+
+  const ctaButtonStyle = {
+    padding: '15px 35px',
+    fontSize: '1.2em',
+    color: 'var(--color-primary, #007bff)',
+    backgroundColor: '#fff',
+    border: 'none',
+    borderRadius: 'var(--border-radius, 4px)',
+    textDecoration: 'none',
+    fontWeight: 'bold',
+    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+    boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
+  };
+
   return (
     <Layout>
+      <AboutMe />
+
       <section id="portfolio" style={{ marginBottom: '3rem' }}>
         <h2 style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '2em', fontWeight: '300' }}>Портфоліо</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem' }}>
@@ -148,20 +186,33 @@ const IndexPage = ({ data }) => {
         />
       )}
 
-      {/* Before and After Section START */}
       <BeforeAfterGallery />
-      {/* Before and After Section END */}
 
       <section id="prices" style={{ marginBottom: '3rem', padding: '2rem 0' }}>
         <h2 style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '2em', fontWeight: '300' }}>Послуги та Ціни</h2>
         <PriceBlock />
       </section>
 
-      {/* Testimonials Section START */}
       <Testimonials />
-      {/* Testimonials Section END */}
 
-      {/* New Contact Section START */}
+      {/* Call to Action Section START */}
+      <section style={ctaSectionStyle} id="cta">
+        <h2 style={ctaHeadingStyle}>Готові Створити Незабутні Спогади?</h2>
+        <p style={ctaTextStyle}>
+          Я з нетерпінням чекаю, щоб допомогти вам зафіксувати найяскравіші моменти вашого життя. 
+          Зв'яжіться зі мною, і ми обговоримо всі деталі вашої майбутньої фотосесії!
+        </p>
+        <a 
+          href="#contact" 
+          style={ctaButtonStyle}
+          onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+          onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0px)'}
+        >
+          Обговорити Фотосесію
+        </a>
+      </section>
+      {/* Call to Action Section END */}
+
       <section id="contact" style={{ marginBottom: '3rem', padding: '2rem 0' }}>
         <h2 style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '2em', fontWeight: '300' }}>Контакти</h2>
         {(() => {
@@ -256,8 +307,6 @@ const IndexPage = ({ data }) => {
           );
         })()}
       </section>
-      {/* New Contact Section END */}
-
     </Layout>
   )
 }

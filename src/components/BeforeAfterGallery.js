@@ -41,7 +41,7 @@ const BeforeAfterGallery = () => {
   }, []); // Empty dependency array means this runs once on mount
 
   const sectionStyle = {
-    padding: "40px 20px",
+    padding: "40px 0",
   };
 
   const headingStyle = {

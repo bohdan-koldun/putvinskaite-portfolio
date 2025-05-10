@@ -81,7 +81,7 @@ const Testimonials = () => {
   };
 
   const sectionStyle = {
-    padding: "40px 20px",
+    padding: "40px 20px 60px",
     backgroundColor: "#f9f9f9", // Світлий фон для секції
   };
 
