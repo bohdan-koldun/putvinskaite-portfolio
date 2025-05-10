@@ -8,30 +8,143 @@ import PriceBlock from "../components/PriceBlock" // Assuming we'll create this
 import Testimonials from "../components/Testimonials"
 import BeforeAfterGallery from "../components/BeforeAfterGallery"
 
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+
+// Optional YARL plugins
+import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import Counter from "yet-another-react-lightbox/plugins/counter";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
+import "yet-another-react-lightbox/plugins/counter.css";
+
 // We can remove or replace styles from index.module.css later
 // import * as styles from "../components/index.module.css"
 
+const INITIAL_VISIBLE_IMAGES = 6;
+
 const IndexPage = ({ data }) => {
-  const images = data.allFile.nodes
+  const allImages = data.allFile.nodes;
+
+  const [visibleImageCount, setVisibleImageCount] = React.useState(INITIAL_VISIBLE_IMAGES);
+  const [lightboxOpen, setLightboxOpen] = React.useState(false);
+  const [lightboxIndex, setLightboxIndex] = React.useState(0);
+
+  const imagesToShow = allImages.slice(0, visibleImageCount);
+
+  const handleShowMore = () => {
+    setVisibleImageCount(allImages.length);
+  };
+
+  const openLightbox = (index) => {
+    setLightboxIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const lightboxSlides = allImages.map(node => ({
+    gridImage: node.childImageSharp.gridImage,
+    lightboxImage: node.childImageSharp.lightboxImage,
+    thumbnailImage: node.childImageSharp.thumbnailImage,
+    alt: node.name,
+  }));
+
+  const galleryItemStyle = {
+    cursor: 'pointer',
+    boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+    borderRadius: '4px',
+    overflow: 'hidden', 
+  };
+
+  const showMoreButtonStyle = {
+    display: 'block',
+    margin: '2rem auto',
+    padding: '10px 25px',
+    fontSize: '1.1em',
+    color: '#fff',
+    backgroundColor: 'var(--color-primary, #007bff)',
+    border: 'none',
+    borderRadius: 'var(--border-radius, 4px)',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s ease',
+  };
 
   return (
     <Layout>
       <section id="portfolio" style={{ marginBottom: '3rem' }}>
         <h2 style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '2em', fontWeight: '300' }}>Портфоліо</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem' }}>
-          {images.map(image => {
-            const imageData = getImage(image)
+          {imagesToShow.map((imageNode) => {
+            const imageData = getImage(imageNode.childImageSharp.gridImage);
+            const originalImageIndex = allImages.findIndex(img => img.id === imageNode.id);
             return (
-              <GatsbyImage
-                key={image.id}
-                image={imageData}
-                alt={image.name}
-                style={{ boxShadow: '0 4px 8px rgba(0,0,0,0.1)', borderRadius: '4px' }}
-              />
-            )
+              <div 
+                key={imageNode.id} 
+                style={galleryItemStyle}
+                onClick={() => openLightbox(originalImageIndex)}
+                onKeyDown={(e) => e.key === 'Enter' && openLightbox(originalImageIndex)}
+                role="button"
+                tabIndex={0}
+              >
+                {imageData && <GatsbyImage image={imageData} alt={imageNode.name} />}
+              </div>
+            );
           })}
         </div>
+        {visibleImageCount < allImages.length && (
+          <button 
+            onClick={handleShowMore} 
+            style={showMoreButtonStyle}
+            onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'var(--color-primary-dark, #0056b3)'} 
+            onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'var(--color-primary, #007bff)'}
+          >
+            Показати більше
+          </button>
+        )}
       </section>
+
+      {lightboxOpen && (
+        <Lightbox
+          open={lightboxOpen}
+          close={() => setLightboxOpen(false)}
+          index={lightboxIndex}
+          slides={lightboxSlides}
+          plugins={[Fullscreen, Thumbnails, Counter]}
+          render={{
+            slide: ({ slide, offset, rect }) => {
+              const gatsbyImgData = slide.lightboxImage;
+              if (!gatsbyImgData) return null;
+              const width = Math.round(Math.min(rect.width, (rect.height / gatsbyImgData.height) * gatsbyImgData.width));
+              const height = Math.round(Math.min(rect.height, (rect.width / gatsbyImgData.width) * gatsbyImgData.height));
+              return (
+                <div style={{ position: "relative", width, height }}>
+                  <GatsbyImage
+                    image={gatsbyImgData}
+                    alt={slide.alt}
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "100%",
+                    }}
+                  />
+                </div>
+              );
+            },
+            thumbnail: ({ slide, rect }) => {
+              const gatsbyThumbData = slide.thumbnailImage;
+              if (!gatsbyThumbData) return null;
+              return (
+                  <GatsbyImage 
+                    image={gatsbyThumbData} 
+                    alt={slide.alt} 
+                    style={{ width: '100%', height: '100%'}}
+                   />
+              );
+            }
+          }}
+        />
+      )}
 
       {/* Before and After Section START */}
       <BeforeAfterGallery />
@@ -155,14 +268,28 @@ export const query = graphql`
         extension: { eq: "jpg" }
         name: { in: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18"] }
       }
+      sort: { name: ASC } # Ensure consistent order for slicing and indexing
     ) {
       nodes {
         id
         name
         childImageSharp {
-          gatsbyImageData(
+          gridImage: gatsbyImageData(
             layout: CONSTRAINED
-            width: 400
+            width: 400 # This width is for the grid thumbnails
+            placeholder: BLURRED
+            formats: [AUTO, WEBP, AVIF]
+          )
+          lightboxImage: gatsbyImageData(
+            layout: CONSTRAINED
+            width: 1600 # Larger width for lightbox
+            placeholder: BLURRED
+            formats: [AUTO, WEBP, AVIF]
+            quality: 90 # Optional: adjust quality for larger images
+          )
+          thumbnailImage: gatsbyImageData(
+            layout: CONSTRAINED
+            width: 200 # Smaller width for lightbox thumbnails
             placeholder: BLURRED
             formats: [AUTO, WEBP, AVIF]
           )
