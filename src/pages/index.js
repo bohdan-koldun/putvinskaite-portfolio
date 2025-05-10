@@ -85,8 +85,8 @@ const IndexPage = ({ data }) => {
             }
           };
 
-          const phoneNumber = "+380000000000"; // Replace with your phone number
-          const telegramUsername = "your_telegram_username"; // Replace with your Telegram username
+          const phoneNumber = "+380950219125"; // Replace with your phone number
+          const telegramUsername = "justina_p"; // Replace with your Telegram username
 
           return (
             <div style={contactInfoStyles}>
