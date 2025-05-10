@@ -65,14 +65,6 @@ const Header = () => {
       <div style={titleStyle}>Фотограф</div>
       <nav style={navStyle}>
         <Link 
-          to="/"
-          style={navLinkStyle}
-          onMouseEnter={(e) => handleNavLinkHover(e, true)}
-          onMouseLeave={(e) => handleNavLinkHover(e, false)}
-        >
-          Головна
-        </Link>
-        <Link 
           to="/#portfolio" 
           style={navLinkStyle}
           onMouseEnter={(e) => handleNavLinkHover(e, true)}
@@ -81,7 +73,15 @@ const Header = () => {
           Портфоліо
         </Link>
         <Link 
-          to="/#contact" 
+          to="/#prices"
+          style={navLinkStyle}
+          onMouseEnter={(e) => handleNavLinkHover(e, true)}
+          onMouseLeave={(e) => handleNavLinkHover(e, false)}
+        >
+          Ціни
+        </Link>
+        <Link 
+          to="/#contact"
           style={navLinkStyle}
           onMouseEnter={(e) => handleNavLinkHover(e, true)}
           onMouseLeave={(e) => handleNavLinkHover(e, false)}

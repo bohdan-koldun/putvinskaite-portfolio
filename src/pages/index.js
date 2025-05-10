@@ -31,16 +31,105 @@ const IndexPage = ({ data }) => {
         </div>
       </section>
 
-      <section id="contact" style={{ marginBottom: '3rem', padding: '2rem 0' }}>
+      <section id="prices" style={{ marginBottom: '3rem', padding: '2rem 0' }}>
         <h2 style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '2em', fontWeight: '300' }}>Послуги та Ціни</h2>
         <PriceBlock />
       </section>
 
-      <section style={{ marginBottom: '3rem', padding: '2rem 0' }}>
-        <h2 style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '2em', fontWeight: '300' }}>Стрічка Instagram</h2>
-        {/* Placeholder for Instagram feed */}
-        <p style={{ textAlign: 'center' }}>Стрічка Instagram буде тут. Наразі, відвідайте <a href="https://www.instagram.com/putvinskaite_photo" target="_blank" rel="noopener noreferrer">@putvinskaite_photo в Instagram</a>.</p>
+      {/* New Contact Section START */}
+      <section id="contact" style={{ marginBottom: '3rem', padding: '2rem 0' }}>
+        <h2 style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '2em', fontWeight: '300' }}>Контакти</h2>
+        {(() => {
+          // Replicating styles and logic from the old contact page directly here
+          // You might want to refactor this into a component later for cleanliness
+          const contactInfoStyles = {
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "1.5rem",
+            maxWidth: "600px",
+            width: "100%",
+            textAlign: "center",
+            margin: "0 auto", // Center the block
+          };
+
+          const contactLinkStyles = {
+            fontSize: "1.2em",
+            color: "var(--color-primary)",
+            textDecoration: "none",
+            padding: "10px 15px",
+            border: "1px solid var(--color-primary)",
+            borderRadius: "var(--border-radius)",
+            transition: "background-color 0.3s ease, color 0.3s ease",
+            display: 'block', // Make links block for better spacing
+            width: 'fit-content',
+          };
+          
+          const handleLinkHover = (e, isHovering) => {
+            if (isHovering) {
+              e.currentTarget.style.backgroundColor = "var(--color-primary)";
+              e.currentTarget.style.color = "#fff";
+            } else {
+              e.currentTarget.style.backgroundColor = "transparent";
+              e.currentTarget.style.color = "var(--color-primary)";
+            }
+          };
+
+          const phoneNumber = "+380000000000"; // Replace with your phone number
+          const telegramUsername = "your_telegram_username"; // Replace with your Telegram username
+
+          return (
+            <div style={contactInfoStyles}>
+              <p style={{ fontSize: '1.1em', lineHeight: '1.6' }}>
+                Ви можете зв'язатися зі мною за телефоном або через месенджери.
+                Буду рада обговорити ваші ідеї та відповісти на будь-які запитання!
+              </p>
+              
+              <a 
+                href={`tel:${phoneNumber}`}
+                style={contactLinkStyles}
+                onMouseEnter={(e) => handleLinkHover(e, true)}
+                onMouseLeave={(e) => handleLinkHover(e, false)}
+              >
+                Телефон: {phoneNumber}
+              </a>
+              
+              <a 
+                href={`viber://chat?number=${phoneNumber.replace('+', '')}`}
+                style={contactLinkStyles}
+                onMouseEnter={(e) => handleLinkHover(e, true)}
+                onMouseLeave={(e) => handleLinkHover(e, false)}
+              >
+                Написати у Viber
+              </a>
+              
+              <a 
+                href={`https://t.me/${telegramUsername}`}
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={contactLinkStyles}
+                onMouseEnter={(e) => handleLinkHover(e, true)}
+                onMouseLeave={(e) => handleLinkHover(e, false)}
+              >
+                Написати у Telegram
+              </a>
+              
+              <a 
+                href="https://www.instagram.com/putvinskaite_photo/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={contactLinkStyles}
+                onMouseEnter={(e) => handleLinkHover(e, true)}
+                onMouseLeave={(e) => handleLinkHover(e, false)}
+              >
+                Перейти в Instagram
+              </a>
+            </div>
+          );
+        })()}
       </section>
+      {/* New Contact Section END */}
+
     </Layout>
   )
 }
