@@ -7,19 +7,19 @@ const PriceBlock = () => {
 
   const services = [
     {
-      name: "Portrait Session",
+      name: "Портретна фотосесія",
       price: "$250",
-      description: "1-hour session, 20 edited photos.",
+      description: "1-годинна сесія, 20 оброблених фото.",
     },
     {
-      name: "Event Photography", // Shortened for space if needed
-      price: "$150/hr", // More explicit pricing
-      description: "Min. 2 hours. Dynamic event coverage.",
+      name: "Репортажна фотозйомка",
+      price: "$150/год", // More explicit pricing
+      description: "Мін. 2 години. Динамічна зйомка подій.",
     },
     {
-      name: "Product Shots",
-      price: "$50/product",
-      description: "Crisp studio shots, multiple angles.",
+      name: "Предметна фотозйомка",
+      price: "$50/продукт",
+      description: "Чіткі студійні знімки, різні ракурси.",
     },
     // You can add more services here to see the wrapping effect
     // {
@@ -160,7 +160,7 @@ const PriceBlock = () => {
                 // e.currentTarget.style.transform = 'scale(1)';
               }}
             >
-              Order
+              Замовити
             </button>
           </div>
         ))}

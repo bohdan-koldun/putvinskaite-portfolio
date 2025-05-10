@@ -10,7 +10,7 @@
 module.exports = {
   siteMetadata: {
     title: `Putvinskaite Photo`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    description: `Сайт-портфоліо фотографа Юстини Путвінскайте. Професійна фотозйомка.`,
     author: `@gatsbyjs`,
     siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
   },
@@ -28,8 +28,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Портфоліо Фотографа`,
+        short_name: `Фотограф`,
         start_url: `/`,
         background_color: `#663399`,
         // This will impact how browsers show your PWA/website

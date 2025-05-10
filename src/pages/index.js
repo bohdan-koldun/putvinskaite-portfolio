@@ -15,7 +15,7 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <section id="portfolio" style={{ marginBottom: '3rem' }}>
-        <h2 style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '2em', fontWeight: '300' }}>Portfolio</h2>
+        <h2 style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '2em', fontWeight: '300' }}>Портфоліо</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem' }}>
           {images.map(image => {
             const imageData = getImage(image)
@@ -32,14 +32,14 @@ const IndexPage = ({ data }) => {
       </section>
 
       <section id="contact" style={{ marginBottom: '3rem', padding: '2rem 0' }}>
-        <h2 style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '2em', fontWeight: '300' }}>Services & Pricing</h2>
+        <h2 style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '2em', fontWeight: '300' }}>Послуги та Ціни</h2>
         <PriceBlock />
       </section>
 
       <section style={{ marginBottom: '3rem', padding: '2rem 0' }}>
-        <h2 style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '2em', fontWeight: '300' }}>Instagram Feed</h2>
+        <h2 style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '2em', fontWeight: '300' }}>Стрічка Instagram</h2>
         {/* Placeholder for Instagram feed */}
-        <p style={{ textAlign: 'center' }}>Instagram feed will be here. For now, visit <a href="https://www.instagram.com/putvinskaite_photo" target="_blank" rel="noopener noreferrer">@putvinskaite_photo on Instagram</a>.</p>
+        <p style={{ textAlign: 'center' }}>Стрічка Instagram буде тут. Наразі, відвідайте <a href="https://www.instagram.com/putvinskaite_photo" target="_blank" rel="noopener noreferrer">@putvinskaite_photo в Instagram</a>.</p>
       </section>
     </Layout>
   )
@@ -75,6 +75,6 @@ export const query = graphql`
  *
  * See: https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/
  */
-export const Head = () => <Seo title="Home" />
+export const Head = () => <Seo title="Головна" />
 
 export default IndexPage

@@ -9,7 +9,7 @@ const OrderForm = ({ serviceName, onClose, onSubmit }) => {
     event.preventDefault();
     // In a real app, you'd handle form submission here (e.g., send data to a backend)
     console.log('Form submitted:', { serviceName, name, email, message });
-    alert(`Thank you, ${name}! Your request for ${serviceName} has been received. We will contact you at ${email} soon.`);
+    alert(`Дякуємо, ${name}! Ваше замовлення на ${serviceName} отримано. Ми зв\'яжемося з Вами за адресою ${email} найближчим часом.`);
     onSubmit({ serviceName, name, email, message }); 
     onClose(); // Close form after submission
   };
@@ -87,23 +87,23 @@ const OrderForm = ({ serviceName, onClose, onSubmit }) => {
     <>
       <div style={overlayStyle} onClick={onClose} />
       <div style={formStyle}>
-        <h3 style={{ marginTop: 0, marginBottom: '20px', textAlign: 'center' }}>Order: {serviceName}</h3>
+        <h3 style={{ marginTop: 0, marginBottom: '20px', textAlign: 'center' }}>Замовлення: {serviceName}</h3>
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="name" style={{display: 'block', marginBottom: '5px'}}>Name:</label>
+            <label htmlFor="name" style={{display: 'block', marginBottom: '5px'}}>Ім'я:</label>
             <input type="text" id="name" value={name} onChange={e => setName(e.target.value)} style={inputStyle} required />
           </div>
           <div>
-            <label htmlFor="email" style={{display: 'block', marginBottom: '5px'}}>Email:</label>
+            <label htmlFor="email" style={{display: 'block', marginBottom: '5px'}}>Електронна пошта:</label>
             <input type="email" id="email" value={email} onChange={e => setEmail(e.target.value)} style={inputStyle} required />
           </div>
           <div>
-            <label htmlFor="message" style={{display: 'block', marginBottom: '5px'}}>Message (optional):</label>
+            <label htmlFor="message" style={{display: 'block', marginBottom: '5px'}}>Повідомлення (необов'язково):</label>
             <textarea id="message" value={message} onChange={e => setMessage(e.target.value)} style={textareaStyle} />
           </div>
           <div style={buttonContainerStyle}>
-            <button type="button" onClick={onClose} style={closeButtonStyle}>Close</button>
-            <button type="submit" style={submitButtonStyle}>Send Request</button>
+            <button type="button" onClick={onClose} style={closeButtonStyle}>Закрити</button>
+            <button type="submit" style={submitButtonStyle}>Надіслати запит</button>
           </div>
         </form>
       </div>
