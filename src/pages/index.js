@@ -213,55 +213,68 @@ const IndexPage = ({ data }) => {
       </section>
       {/* Call to Action Section END */}
 
-      <section id="contact" style={{ marginBottom: '3rem', padding: '2rem 0' }}>
+      <section id="contact" style={{ marginBottom: '3rem', padding: '2rem 0', backgroundColor: '#f0f2f5' /* Light grey background for the whole section */ }}>
         <h2 style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '2em', fontWeight: '300' }}>Контакти</h2>
         {(() => {
-          // Replicating styles and logic from the old contact page directly here
-          // You might want to refactor this into a component later for cleanliness
           const contactInfoStyles = {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             gap: "1.5rem",
             maxWidth: "600px",
-            width: "100%",
+            width: "90%", // Ensure it doesn't touch edges on small screens
             textAlign: "center",
-            margin: "0 auto", // Center the block
+            margin: "0 auto",
+            padding: '30px',
+            backgroundColor: '#ffffff',
+            borderRadius: 'var(--border-radius, 8px)',
+            boxShadow: '0 6px 20px rgba(0,0,0,0.08)',
           };
 
           const contactLinkStyles = {
-            fontSize: "1.2em",
+            fontSize: "1.1em",
             color: "var(--color-primary)",
+            backgroundColor: "#fff", // Default white background for the button appearance
             textDecoration: "none",
-            padding: "10px 15px",
-            border: "1px solid var(--color-primary)",
-            borderRadius: "var(--border-radius)",
-            transition: "background-color 0.3s ease, color 0.3s ease",
-            display: 'block', // Make links block for better spacing
-            width: 'fit-content',
+            padding: "12px 20px",
+            // border: "1px solid var(--color-primary)", // Removed border
+            borderRadius: "var(--border-radius, 6px)",
+            transition: "all 0.2s ease-in-out",
+            display: 'inline-flex', // For icon and text alignment
+            alignItems: 'center',
+            gap: '10px', // Space between icon and text
+            fontWeight: '500',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.07)',
+            minWidth: '220px', // Ensure buttons have a similar width
+            justifyContent: 'center',
           };
           
           const handleLinkHover = (e, isHovering) => {
             if (isHovering) {
               e.currentTarget.style.backgroundColor = "var(--color-primary)";
               e.currentTarget.style.color = "#fff";
+              e.currentTarget.style.boxShadow = '0 4px 8px rgba(0,0,0,0.12)';
+              e.currentTarget.style.transform = 'translateY(-2px)';
             } else {
-              e.currentTarget.style.backgroundColor = "transparent";
+              e.currentTarget.style.backgroundColor = "#fff";
               e.currentTarget.style.color = "var(--color-primary)";
+              e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.07)';
+              e.currentTarget.style.transform = 'translateY(0px)';
             }
           };
 
-          const phoneNumber = "+380950219125"; // Replace with your phone number
-          const telegramUsername = "justina_p"; // Replace with your Telegram username
+          const phoneNumber = "+380950219125";
+          const telegramUsername = "justina_p";
+
+          const iconStyle = { marginRight: '8px' }; // Common style for icons
 
           return (
             <div style={contactInfoStyles}>
-              <p style={{ fontSize: '1.1em', lineHeight: '1.6' }}>
-                Ви можете зв'язатися зі мною за телефоном або через месенджери.
-                Буду рада обговорити ваші ідеї та відповісти на будь-які запитання!
+              <p style={{ fontSize: '1.2em', lineHeight: '1.6', color: '#555' }}>
+                Зв'яжіться зі мною будь-яким зручним для вас способом, і ми обговоримо всі деталі вашої майбутньої фотосесії!
               </p>
-              <p style={{ fontSize: '1.1em', lineHeight: '1.6', fontWeight: 'bold' }}>
-                Місце надання послуг: м. Київ
+              <p style={{ fontSize: '1.1em', lineHeight: '1.6', fontWeight: 'bold', color: '#333' }}>
+                📍 Місце надання послуг: м. Київ
               </p>
               
               <a 
@@ -270,7 +283,7 @@ const IndexPage = ({ data }) => {
                 onMouseEnter={(e) => handleLinkHover(e, true)}
                 onMouseLeave={(e) => handleLinkHover(e, false)}
               >
-                Телефон: {phoneNumber}
+                <span role="img" aria-label="Phone" style={iconStyle}>📞</span> Телефон: {phoneNumber}
               </a>
               
               <a 
@@ -279,7 +292,7 @@ const IndexPage = ({ data }) => {
                 onMouseEnter={(e) => handleLinkHover(e, true)}
                 onMouseLeave={(e) => handleLinkHover(e, false)}
               >
-                Написати у Viber
+                <span role="img" aria-label="Chat" style={iconStyle}>💬</span> Написати у Viber
               </a>
               
               <a 
@@ -290,7 +303,7 @@ const IndexPage = ({ data }) => {
                 onMouseEnter={(e) => handleLinkHover(e, true)}
                 onMouseLeave={(e) => handleLinkHover(e, false)}
               >
-                Написати у Telegram
+                <span role="img" aria-label="Telegram Plane" style={iconStyle}>✈️</span> Написати у Telegram
               </a>
               
               <a 
@@ -301,7 +314,7 @@ const IndexPage = ({ data }) => {
                 onMouseEnter={(e) => handleLinkHover(e, true)}
                 onMouseLeave={(e) => handleLinkHover(e, false)}
               >
-                Перейти в Instagram
+                <span role="img" aria-label="Camera" style={iconStyle}>📷</span> Перейти в Instagram
               </a>
             </div>
           );
