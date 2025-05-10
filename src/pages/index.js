@@ -85,7 +85,7 @@ const IndexPage = ({ data }) => {
                 role="button"
                 tabIndex={0}
               >
-                {imageData && <GatsbyImage image={imageData} alt={imageNode.name} />}
+                {imageData && <GatsbyImage image={imageData} alt={imageNode.name} loading="lazy" />}
               </div>
             );
           })}
@@ -109,6 +109,7 @@ const IndexPage = ({ data }) => {
           index={lightboxIndex}
           slides={lightboxSlides}
           plugins={[Fullscreen, Thumbnails, Counter]}
+          carousel={{ preload: 1 }}
           render={{
             slide: ({ slide, offset, rect }) => {
               const gatsbyImgData = slide.lightboxImage;
@@ -138,6 +139,7 @@ const IndexPage = ({ data }) => {
                   <GatsbyImage 
                     image={gatsbyThumbData} 
                     alt={slide.alt} 
+                    loading="lazy"
                     style={{ width: '100%', height: '100%'}}
                    />
               );
