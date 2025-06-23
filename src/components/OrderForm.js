@@ -4,14 +4,34 @@ const OrderForm = ({ serviceName, onClose, onSubmit }) => {
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [message, setMessage] = React.useState('');
+  const [status, setStatus] = React.useState('idle'); // idle, sending, success, error
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // In a real app, you'd handle form submission here (e.g., send data to a backend)
-    console.log('Form submitted:', { serviceName, name, email, message });
-    alert(`Дякуємо, ${name}! Ваше замовлення на ${serviceName} отримано. Ми зв\'яжемося з Вами за адресою ${email} найближчим часом.`);
-    onSubmit({ serviceName, name, email, message }); 
-    onClose(); // Close form after submission
+    setStatus('sending');
+
+    try {
+      const response = await fetch('/api/sendMessage', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ serviceName, name, email, message }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Form submission failed');
+      }
+
+      setStatus('success');
+      alert(`Дякуємо, ${name}! Ваше замовлення на ${serviceName} отримано. Ми зв'яжемося з Вами найближчим часом.`);
+      onSubmit({ serviceName, name, email, message });
+      onClose(); // Close form after submission
+    } catch (error) {
+      console.error('There was an error submitting the form:', error);
+      setStatus('error');
+      alert('На жаль, сталася помилка. Спробуйте, будь ласка, пізніше.');
+    }
   };
 
   const formStyle = {
@@ -102,8 +122,10 @@ const OrderForm = ({ serviceName, onClose, onSubmit }) => {
             <textarea id="message" value={message} onChange={e => setMessage(e.target.value)} style={textareaStyle} />
           </div>
           <div style={buttonContainerStyle}>
-            <button type="button" onClick={onClose} style={closeButtonStyle}>Закрити</button>
-            <button type="submit" style={submitButtonStyle}>Надіслати запит</button>
+            <button type="button" onClick={onClose} style={closeButtonStyle} disabled={status === 'sending'}>Закрити</button>
+            <button type="submit" style={submitButtonStyle} disabled={status === 'sending'}>
+              {status === 'sending' ? 'Надсилається...' : 'Надіслати запит'}
+            </button>
           </div>
         </form>
       </div>
